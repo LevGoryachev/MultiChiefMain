@@ -17,5 +17,5 @@ dependencies {
 }
 
 war {
-    archiveName 'AppForeman.war'
+    archiveName 'MultiChiefMain.war'
 }

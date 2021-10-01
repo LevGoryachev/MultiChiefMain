@@ -1,7 +1,7 @@
 # MultiChiefMain
-MultiChiefMain is a main RESTful service of MultiChief - the experimental ERP system for construction industry. 
-MultiChiefMain is responsible for preparing data (DTO) for web-clients (frontend modules <a href="https://github.com/LevGoryachev/MultiChiefWeb">MultiChiefWeb</a>). 
-<p>Generally, MultiChief web-app is intended for on-line and off-line interaction between departments and employees.</p>
+<p>MultiChief is an experimental microservice-based ERP system for construction industry. <p/>
+<b>MultiChiefMain</b> is a main service that is responsible for preparing data (DTO) for web-client (frontend module <a href="https://github.com/LevGoryachev/MultiChiefWeb">MultiChiefWeb</a>). 
+<p>Generally, the whole MultiChief web-app is intended for on-line and off-line interaction between departments and employees.</p>
 <p><b>Summary: Java 11, Spring-Boot, Spring Security, Spring Data JPA (Hibernate)</b></p>
 <p><b>DB: relational database with stored procedures(PostgreSQL)</b></p>
 
