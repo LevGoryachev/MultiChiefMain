@@ -1,12 +1,16 @@
 # MultiChiefMain
 <p><b>MultiChief</b> is an experimental microservice-based ERP system for construction industry (on-line and off-line interaction between departments and employees).<p/>
-<b>MultiChiefMain</b> is a main project that is structured by project modules - services-orchestrators.
-<p>Each service-orchestrator is intended for certain business function, responsible for preparing data
-(DTOs, Views, BusinessEntities) for web-client (frontend module <a href="https://github.com/LevGoryachev/MultiChiefWeb">MultiChiefWeb</a>). </p>
-
+<p><b>MultiChiefMain</b> is a main project which is set of orchestrators - project modules.
+Each module is an orchestrator and it can be deployed in web server environments (as a WAR file) in case the business needs.</p>
+<p>Each service-orchestrator is intended for certain business function and responsible for preparing data
+(DTOs, Views, BusinessEntities, Documents, etc.) for web-clients (frontend module <a href="https://github.com/LevGoryachev/MultiChiefWeb">MultiChiefWeb</a> and others, that can be created). </p>
   
 <p><b>Summary: Java 11, Spring-Boot, Spring Security, Spring Data JPA (Hibernate)</b></p>
-<p><b>Databases: PostgreSQL</b></p>
+<p><b>Customized docs (each module):</b> deploy the target APP and follow:</p>
+<p><b>API:</b> /swagger-ui/</p>
+<p><b>Description:</b> /index.html</p>
+<p><b>Database diagram:</b></p>
+<p><b>Javadocs:</b></p>
 <h3>Architecture</h3>
 <p>Customized microservice-based domain-driven architecture that has levels:<p/>
 <ul>
