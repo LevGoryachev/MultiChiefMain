@@ -7,9 +7,8 @@ Each module is an orchestrator and it can be deployed in web server environments
   
 <p><b>Summary: Java 11, Spring-Boot, Spring Security, Spring Data JPA (Hibernate)</b></p>
 <p><b>Customized docs (each module):</b> deploy the target APP and follow:</p>
-<p><b>API:</b> /swagger-ui/</p>
+<p><b>API:</b> deploy and follow /swagger-ui/</p>
 <p><b>Description:</b> /index.html</p>
-<p><b>Database diagram:</b></p>
 <p><b>Javadocs:</b></p>
 <h3>Architecture</h3>
 <p>Customized microservice-based domain-driven architecture that has levels:<p/>

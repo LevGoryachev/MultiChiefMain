@@ -1,0 +1,2 @@
+ru/goryachev/multichief/orchestras/engineeringfunctionorchestrator/app/WebAppInit.java
+ ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.app.WebAppInit

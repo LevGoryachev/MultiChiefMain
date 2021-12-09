@@ -1,6 +1,5 @@
 rootProject.name = 'MultiChiefMain'
 include 'MCCEOFunctionOrchestrator'
+include 'MCEngineeringFunctionOrchestrator'
 include 'MCFieldFunctionOrchestrator'
 include 'MCMRPFunctionOrchestrator'
-include 'MCOfficeFunctionOrchestrator'
-

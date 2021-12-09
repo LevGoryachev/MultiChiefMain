@@ -2,7 +2,7 @@ plugins {
     id 'war'
 }
 
-group 'ru.goryachev.multichief.main'
+group 'ru.goryachev.multichief.orchestras'
 version '1.0'
 
 sourceCompatibility = 11
