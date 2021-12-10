@@ -4,8 +4,8 @@ plugins {
 group 'ru.goryachev'
 version '1.0'
 
-repositories {
-    mavenCentral()
+ext {
+    springBootVersion = '2.5.5'
 }
 
 dependencies {
