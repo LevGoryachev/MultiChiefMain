@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "project_approval")
+@Table(name = "project_bow")
 @IdClass(ProjectBowCompositeKey.class)
 public class ProjectBow {
 

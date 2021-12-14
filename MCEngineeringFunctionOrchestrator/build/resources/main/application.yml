@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/engineeringbundledb
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database: POSTGRESQL
+

@@ -30,11 +30,11 @@ public class ProjectBowCompositeKey implements Serializable {
         this.bimId = bimId;
     }
 
-    public Long getBomId() {
+    public Long getBowId() {
         return bowId;
     }
 
-    public void setBomId(Long bowId) {
+    public void setBowId(Long bowId) {
         this.bowId = bowId;
     }
 }

@@ -11,5 +11,5 @@ import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.model.
  */
 @Repository
 public interface RoleInProjectRepository extends JpaRepository<RoleInProject, Long> {
-
+    RoleInProject getByRoleInProjectName (String name);
 }

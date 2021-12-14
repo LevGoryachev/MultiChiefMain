@@ -21,14 +21,14 @@ public class ProjectBom {
 
     @Id
     @Column(name = "bom_id")
-    private Long bowId;
+    private Long bomId;
 
     public ProjectBom() {
     }
 
-    public ProjectBom(Long bimId, Long bowId) {
+    public ProjectBom(Long bimId, Long bomId) {
         this.bimId = bimId;
-        this.bowId = bowId;
+        this.bomId = bomId;
     }
 
     public Long getBimId() {
@@ -39,11 +39,11 @@ public class ProjectBom {
         this.bimId = bimId;
     }
 
-    public Long getBowId() {
-        return bowId;
+    public Long getBomId() {
+        return bomId;
     }
 
-    public void setBowId(Long bowId) {
-        this.bowId = bowId;
+    public void setBomId(Long bomId) {
+        this.bomId = bomId;
     }
 }

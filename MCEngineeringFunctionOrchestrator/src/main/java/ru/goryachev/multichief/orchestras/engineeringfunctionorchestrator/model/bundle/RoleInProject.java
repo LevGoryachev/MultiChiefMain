@@ -23,7 +23,7 @@ public class RoleInProject {
     @Column(name = "role_in_project_name")
     private String roleInProjectName;
 
-    @OneToMany(mappedBy = "role_in_project", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "roleInProject", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "role_in_project" ,"hibernateLazyInitializer", "handler" }, allowSetters = true)
     private List<ProjectApproval> approvals;
 

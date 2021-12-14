@@ -1,22 +1,9 @@
 spring:
-  config:
-    activate:
-      on-profile: test
-name: test-YAML
-environment: testing
-enabled: false
-servers:
-  - www.abc.test.com
-  - www.xyz.test.com
+  datasource:
+    url: jdbc:postgresql://localhost:5432/engineeringbundledb
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database: POSTGRESQL
 
----
-spring:
-  config:
-    activate:
-      on-profile: prod
-name: prod-YAML
-environment: production
-enabled: false
-servers:
-  - www.abc.com
-  - www.xyz.com
