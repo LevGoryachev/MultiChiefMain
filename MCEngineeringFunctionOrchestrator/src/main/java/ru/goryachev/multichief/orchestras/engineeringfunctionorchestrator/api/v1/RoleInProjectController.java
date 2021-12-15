@@ -30,8 +30,8 @@ public class RoleInProjectController {
     }
 
     @GetMapping("{name}")
-    public ResponseEntity<RoleInProject> getByRoleName (@PathVariable String roleName) {
-            return new ResponseEntity<>(roleInProjectService.getByRoleName(roleName), HttpStatus.OK);
+    public ResponseEntity<RoleInProject> getByRoleName (@PathVariable String name) {
+            return new ResponseEntity<>(roleInProjectService.getByRoleName(name), HttpStatus.OK);
     }
 
     @PostMapping
