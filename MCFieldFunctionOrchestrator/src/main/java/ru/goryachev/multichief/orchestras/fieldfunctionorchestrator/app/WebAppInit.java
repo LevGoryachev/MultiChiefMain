@@ -20,9 +20,4 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "ru.goryachev.multichief.orchestras.fieldfunctionorchestrator")
 @EntityScan(basePackages = "ru.goryachev.multichief.orchestras.fieldfunctionorchestrator")
 public class WebAppInit extends SpringBootServletInitializer {
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return super.configure(builder);
-    }
 }
