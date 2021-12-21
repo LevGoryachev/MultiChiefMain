@@ -11,15 +11,15 @@ for clients (frontend module <a href="https://github.com/LevGoryachev/MultiChief
 (not only as modules of this project, but also as like independent projects).
 </p>
 
-<p>The orchestrators use one or more core microservices (domains) to implement their functionality:</p>
+<p>An orchestrator can use one or more core microservices (domains) to implement their functionality:</p>
 
 <p>Currently, in MultiChief ERP are used next core microservices:</p>
 <ul>
-    <li><a href="https://github.com/LevGoryachev/MultiChiefConstruction">MultiChiefConstruction</a></li>
-    <li><a href="https://github.com/LevGoryachev/MultiChiefInventory">MultiChiefInventory</a></li>
-    <li><a href="https://github.com/LevGoryachev/ForGeo">ForGeo</a></li>
-    <li><a href="https://github.com/LevGoryachev/MultiChiefWorkflow">MultiChiefWorkflow</a></li>
-    <li><a href="https://github.com/LevGoryachev/MultiChiefStaff">MultiChiefStaff</a></li>
+    <li><a href="https://github.com/LevGoryachev/MultiChiefConstruction" target="_blank">MultiChiefConstruction</a></li>
+    <li><a href="https://github.com/LevGoryachev/MultiChiefInventory" target="_blank">MultiChiefInventory</a></li>
+    <li><a href="https://github.com/LevGoryachev/ForGeo" target="_blank">ForGeo</a></li>
+    <li><a href="https://github.com/LevGoryachev/MultiChiefWorkflow" target="_blank">MultiChiefWorkflow</a></li>
+    <li><a href="https://github.com/LevGoryachev/MultiChiefStaff" target="_blank">MultiChiefStaff</a></li>
 </ul>
 <p>In case the functional needs, more microservices can be created</p>
 <p>Summary:</p>
@@ -37,7 +37,7 @@ for clients (frontend module <a href="https://github.com/LevGoryachev/MultiChief
 
 ![MultiChiefApplicationDiagram](https://user-images.githubusercontent.com/61917893/141860031-efe40b02-9a3b-4b94-aaef-622869eca3ab.jpg)
 
-<p>Customized microservice-based domain-driven architecture has global levels:<p/>
+<p>MultiChief web-app has global levels:<p/>
 <ul>
 <li><b>Core sevices (atomic microservices).</b>
  Each one is responsible for a certain functions of its domain(CRUD operations of subdomains, preparing special DTOs)

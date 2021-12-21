@@ -11,5 +11,5 @@ import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.model.
  */
 @Repository
 public interface ProjectApprovalRepository extends JpaRepository<ProjectApproval, Long> {
-
+        Iterable<ProjectApproval> getAllByBimId (Long bimId);
 }
