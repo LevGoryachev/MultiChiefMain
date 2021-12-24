@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.model.bundle.ProjectApproval;
 
+import java.util.List;
+
 /**
  * ProjectApprovalRepository: CRUD operations of binding entity.
  * @author Lev Goryachev
@@ -11,5 +13,5 @@ import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.model.
  */
 @Repository
 public interface ProjectApprovalRepository extends JpaRepository<ProjectApproval, Long> {
-        Iterable<ProjectApproval> getAllByBimId (Long bimId);
+        List<ProjectApproval> getAllByBimId (Long bimId);
 }

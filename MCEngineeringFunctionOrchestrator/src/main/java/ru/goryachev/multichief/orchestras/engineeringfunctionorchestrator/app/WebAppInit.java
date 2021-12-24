@@ -26,9 +26,9 @@ import org.springframework.web.client.RestTemplate;
 @EntityScan(basePackages = "ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator")
 public class WebAppInit extends SpringBootServletInitializer {
 
-    @Bean
-    //@Scope("prototype")
+    /*@Bean
+    @Scope("request")
     public RestTemplate restTemplate(){
         return new RestTemplate();
-    }
+    }*/
 }
