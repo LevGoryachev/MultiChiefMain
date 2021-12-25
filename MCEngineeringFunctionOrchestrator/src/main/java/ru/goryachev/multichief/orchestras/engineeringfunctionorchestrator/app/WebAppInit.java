@@ -4,11 +4,8 @@ package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.app;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Scope;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * EngineeringFunctionOrchestrator main business function:
@@ -26,9 +23,4 @@ import org.springframework.web.client.RestTemplate;
 @EntityScan(basePackages = "ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator")
 public class WebAppInit extends SpringBootServletInitializer {
 
-    /*@Bean
-    @Scope("request")
-    public RestTemplate restTemplate(){
-        return new RestTemplate();
-    }*/
 }

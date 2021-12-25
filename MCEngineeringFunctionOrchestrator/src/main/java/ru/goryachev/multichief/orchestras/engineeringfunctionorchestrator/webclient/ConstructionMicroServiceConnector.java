@@ -1,9 +1,15 @@
 package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.webclient;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+import java.util.Map;
 
 @Component
 //@PropertySource("classpath:microservices.properties")
@@ -19,13 +25,19 @@ public class ConstructionMicroServiceConnector extends RestTemplate {
     private String baseUrl = domainUrl + apiVersion;
 
     //private RestTemplate restTemplate;
-
    /* @Autowired
     public ConstructionMicroServiceConnector(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }*/
 
-    public Object getBimJson(Long id) {
+    public List<Object> getAllBims() {
+        StringBuffer urlBuilder = new StringBuffer(baseUrl)
+                .append(subDomainBim);
+        ResponseEntity<List<Object>> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Object>>(){});
+        return response.getBody();
+    }
+
+    public Object getBim(Long id) {
         StringBuffer urlBuilder = new StringBuffer(baseUrl)
                 .append(subDomainBim)
                 .append(id);
@@ -33,22 +45,16 @@ public class ConstructionMicroServiceConnector extends RestTemplate {
         return response.getBody();
     }
 
-    /*public Object createConstructionJson(Object constructionDTO) {
-        urlBuilder
+    public Object saveBim(Map<String, Object> requestDto) {
+        StringBuffer urlBuilder = new StringBuffer(baseUrl)
                 .append(subDomainBim);
-        String constructionApi = urlBuilder.toString();
-        ResponseEntity<Object> response = restTemplate.exchange(constructionApi, HttpMethod.POST, null, Object.class);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity httpRequest = new HttpEntity(requestDto, headers);
+        ResponseEntity<Object> response = this.exchange(urlBuilder.toString(), HttpMethod.POST, httpRequest, Object.class);
         return response.getBody();
     }
 
-    public Object updateConstructionJson(Object constructionDTO) {
-        urlBuilder
-                .append(subDomainBim);
-        String constructionApi = urlBuilder.toString();
-        ResponseEntity<Object> response = restTemplate.exchange(constructionApi, HttpMethod.PUT, null, Object.class);
-        return response.getBody();
-    }
-
+/*
     public Object deleteConstruction(Long id) {
         urlBuilder
                 .append(subDomainBim)

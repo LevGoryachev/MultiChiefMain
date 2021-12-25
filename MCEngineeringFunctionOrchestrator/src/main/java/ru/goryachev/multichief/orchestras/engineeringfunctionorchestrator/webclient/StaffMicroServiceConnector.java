@@ -24,7 +24,6 @@ public class StaffMicroServiceConnector extends RestTemplate {
     private String baseUrl = domainUrl + apiVersion;
 
     //private RestTemplate restTemplate;
-
    /* @Autowired
     public StaffMicroServiceConnector(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -33,26 +32,17 @@ public class StaffMicroServiceConnector extends RestTemplate {
     public List<Object> getAllEmployees() {
         StringBuffer urlBuilder = new StringBuffer(baseUrl)
                 .append(subDomainEmployee);
-        //ResponseEntity <List<Object>> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Object>>(){});
         ResponseEntity <List<Object>> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Object>>(){});
         List<Object> allEmployees = response.getBody();
-
-
-        //ResponseEntity <LinkedHashMap<Long, Object>> d = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, new ParameterizedTypeReference<LinkedHashMap<Long, Object>>(){});
-        //ResponseEntity <LinkedHashMap> w = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, LinkedHashMap.class);
-
         return allEmployees;
     }
 
-    public Object getEmployeeJson(Long id) {
+    public Object getEmployee(Long id) {
         StringBuffer urlBuilder = new StringBuffer(baseUrl)
                 .append(subDomainEmployee)
                 .append(id);
         ResponseEntity<Object> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, Object.class);
-
-
         return response.getBody();
     }
-
     //Read methods only
 }
