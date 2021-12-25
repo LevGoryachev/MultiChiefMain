@@ -41,19 +41,11 @@ public class ProjectApprovalService implements BundleService {
 
         List<Object> employeesAll = staffConnector.getAllEmployees(); //get all employees from Staff microservice
 
-        //convert to Map (LinkedHashMap)
-        List<Map<Object, Object>> employeesAllMapped = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
-        for(Object o: employeesAll){
-            Map<Object, Object> employeeMap = objectMapper.convertValue(o, Map.class);
-            employeesAllMapped.add(employeeMap);
-        }
-        //employeesAllMapped = employeesAll.stream().map(o -> ObjectMapper::convertValue(o, Map.class)).collect(Collectors.toList());
-        //employeesAllMapped = employeesAll.stream().forEach(s -> objectMapper.convertValue(s,Map.class)).collect(Collectors.toList());
-        //employeesAllMapped = employeesAll.stream().map(s -> objectMapper.readValue(s, Map.class)).collect(Collectors.toList());
+        List<Map<Object, Object>> employeesAllMapped = employeesAll.stream().map(n -> (Map<Object, Object>) objectMapper.convertValue(n, Map.class)).collect(Collectors.toList()); //convert to Map (LinkedHashMap)
 
-        List<Map<Object, Object>> employeesFiltered = employeesAllMapped.stream().filter(employee -> employeeIds.contains(Long.valueOf(employee.get("id").toString()))).collect(Collectors.toList());
-        responseDTO.put("Approvers", employeesFiltered);
+        List<Map<Object, Object>> employeesFiltered = employeesAllMapped.stream().filter(employee -> employeeIds.contains(Long.valueOf(employee.get("id").toString()))).collect(Collectors.toList()); //filter employees by employeIDs, related in this (target) BIM
+        responseDTO.put("Approvers", employeesFiltered); //set employees which related to the target BIM
         return responseDTO;
     }
 }
