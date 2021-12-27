@@ -15,12 +15,10 @@ import java.util.Map;
 //@PropertySource("classpath:microservices.properties")
 public class ConstructionMicroServiceConnector extends RestTemplate {
 
-    //@Value("${urlscheme.multichief.construction}")
+    //@Value("${urlscheme.multichief.construction.domain}")
     private String domainUrl = "http://localhost:8080/Gradle___ru_goryachev___MultiChiefConstruction_war/"; // microserviceUrl from yml
     //@Value("${urlscheme.multichief.construction.apiversion}")
     private String apiVersion = "api/v1/";//yml
-    //@Value("${urlscheme.multichief.construction.bim}")
-    private String subDomainBim = "bims/"; //yml
 
     private String baseUrl = domainUrl + apiVersion;
 
@@ -30,37 +28,36 @@ public class ConstructionMicroServiceConnector extends RestTemplate {
         this.restTemplate = restTemplate;
     }*/
 
-    public List<Object> getAllBims() {
+    //BIM domain:
+    public List<Object> getAll(String subDomain) {
         StringBuffer urlBuilder = new StringBuffer(baseUrl)
-                .append(subDomainBim);
+                .append(subDomain);
         ResponseEntity<List<Object>> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Object>>(){});
         return response.getBody();
     }
 
-    public Object getBim(Long id) {
+    public Object getOne(String subDomain, Long id) {
         StringBuffer urlBuilder = new StringBuffer(baseUrl)
-                .append(subDomainBim)
+                .append(subDomain)
                 .append(id);
         ResponseEntity<Object> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, Object.class);
         return response.getBody();
     }
 
-    public Object saveBim(Map<String, Object> requestDto) {
+    public Object save(String subDomain, Map<String, Object> requestDto) {
         StringBuffer urlBuilder = new StringBuffer(baseUrl)
-                .append(subDomainBim);
+                .append(subDomain);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity httpRequest = new HttpEntity(requestDto, headers);
         ResponseEntity<Object> response = this.exchange(urlBuilder.toString(), HttpMethod.POST, httpRequest, Object.class);
         return response.getBody();
     }
 
-/*
-    public Object deleteConstruction(Long id) {
-        urlBuilder
-                .append(subDomainBim)
+    public Object delete(String subDomain, Long id) {
+        StringBuffer urlBuilder = new StringBuffer(baseUrl)
+                .append(subDomain)
                 .append(id);
-        String constructionApi = urlBuilder.toString();
-        ResponseEntity<Object> response = restTemplate.exchange(constructionApi, HttpMethod.DELETE, null, Object.class);
+        ResponseEntity<Object> response = this.exchange(urlBuilder.toString(), HttpMethod.DELETE, null, Object.class);
         return response.getBody();
-    }*/
+    }
 }

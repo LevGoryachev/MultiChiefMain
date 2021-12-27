@@ -58,12 +58,17 @@ public class ProjectApprovalController {
 
         Map<String, Object> newBim = new LinkedHashMap<>();
         newBim.put("id","");
-        newBim.put("projectCodeNumber","SE-2");
-        newBim.put("projectName","Exp from Proxy Orchestrator");
-        newBim.put("lod","300");
+        newBim.put("projectCodeNumber","SE-3");
+        newBim.put("projectName","Exp 3 from Proxy Orchestrator");
+        newBim.put("lod","500");
         newBim.put("projectTypeId","");
         newBim.put("eirId","");
-        newBim.put("link","/httl/ddd/xxx/yyyy");
-        proxyBimService.saveBim(newBim);
+        newBim.put("link","/httl/ddd/bterterthnhjuy");
+        proxyBimService.save(newBim);
+    }
+
+    @DeleteMapping ("/del")
+    public void dExp (){
+        proxyBimService.delete(16L);
     }
 }

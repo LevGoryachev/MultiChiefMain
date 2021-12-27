@@ -14,7 +14,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+//@PropertySource("classpath:microservices.properties")
 public class ProjectApprovalService implements BundleService {
+
+    //@Value("${urlscheme.multichief.construction.subdomain.bim}")
+    private String subDomainBim = "bims/"; //yml
+     //@Value("${urlscheme.multichief.staff.subdomain.employee}")
+    private String subDomainEmployee = "employees/"; //yml
+
 
     private ProjectApprovalRepository projectApprovalRepository;
     private ConstructionMicroServiceConnector constructionConnector;
@@ -35,13 +42,13 @@ public class ProjectApprovalService implements BundleService {
     //getBundle()
     public Map<String, Object> getProject (Long bimId) {
         Map<String, Object> responseDTO = new LinkedHashMap<>();
-        responseDTO.put("project", constructionConnector.getBim(bimId)); //set target BIM (construction project) to response from Construction microservice
+        responseDTO.put("project", constructionConnector.getOne(subDomainBim, bimId)); //set target BIM (construction project) to response from Construction microservice
 
         List<ProjectApproval> projectApprovals = projectApprovalRepository.getAllByBimId(bimId); //bind-entities(ids) from bind table, filtered by one (target) BIM
 
         List<Long> employeeIds = projectApprovals.stream().map(ProjectApproval::getEmployeeId).collect(Collectors.toList()); //employeIDs, filtered by one (target) BIM
 
-        List<Object> employeesAll = staffConnector.getAllEmployees(); //get all employees from Staff microservice
+        List<Object> employeesAll = staffConnector.getAll(subDomainEmployee); //get all employees from Staff microservice
 
         ObjectMapper objectMapper = new ObjectMapper();
         List<Map<Object, Object>> employeesAllMapped = employeesAll.stream().map(n -> (Map<Object, Object>) objectMapper.convertValue(n, Map.class)).collect(Collectors.toList()); //convert to Map (LinkedHashMap)

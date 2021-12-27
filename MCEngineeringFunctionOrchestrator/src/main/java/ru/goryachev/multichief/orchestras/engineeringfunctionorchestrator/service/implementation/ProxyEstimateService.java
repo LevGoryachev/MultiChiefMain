@@ -11,41 +11,35 @@ import java.util.Map;
 
 @Service
 //@PropertySource("classpath:microservices.properties")
-public class ProxyBimService implements ProxyService {
+public class ProxyEstimateService implements ProxyService {
 
-    //@Value("${urlscheme.multichief.construction.subdomain.bim}")
-    private String subDomain = "bims/"; //yml
+    //@Value("${urlscheme.multichief.construction.subdomain.estimate}")
+    private String subDomain = "estimates/"; //yml*/
 
     private ConstructionMicroServiceConnector constructionConnector;
 
     @Autowired
-    public ProxyBimService(ConstructionMicroServiceConnector constructionConnector) {
+    public ProxyEstimateService(ConstructionMicroServiceConnector constructionConnector) {
         this.constructionConnector = constructionConnector;
     }
 
+    @Override
     public List<Object> getAll (){
         return constructionConnector.getAll(subDomain);
     }
 
-    public Object getOne (Long bimId) {
-        return constructionConnector.getOne(subDomain, bimId);
+    @Override
+    public Object getOne (Long projectTypeId) {
+        return constructionConnector.getOne(subDomain, projectTypeId);
     }
 
-    //Bim requestDto format:
-    /*Map<String, Object> newBim = new LinkedHashMap<>();
-        newBim.put("id","");
-        newBim.put("projectCodeNumber","SE-2");
-        newBim.put("projectName","Exp from Proxy Orchestrator");
-        newBim.put("lod","300");
-        newBim.put("projectTypeId","");
-        newBim.put("eirId","");
-        newBim.put("link","/httl/ddd/xxx/yyyy");*/
-
+    @Override
     public Object save (Map<String, Object> requestDto){
         return constructionConnector.save(subDomain, requestDto);
     }
 
-    public Object delete (Long bimId){
-        return constructionConnector.delete(subDomain, bimId);
+    @Override
+    public Object delete (Long projectTypeId){
+        return constructionConnector.delete(subDomain, projectTypeId);
     }
 }

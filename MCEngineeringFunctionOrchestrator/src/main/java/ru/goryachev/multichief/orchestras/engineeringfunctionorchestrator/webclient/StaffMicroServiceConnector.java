@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 @Component
@@ -18,8 +17,6 @@ public class StaffMicroServiceConnector extends RestTemplate {
     private String domainUrl = "http://localhost:8080/Gradle___ru_goryachev___MultiChiefStaff_war/"; // microserviceUrl from yml
     //@Value("${urlscheme.multichief.construction.apiversion}")
     private String apiVersion = "api/v1/";//yml
-    //@Value("${urlscheme.multichief.construction.bim}")
-    private String subDomainEmployee = "employees/"; //yml
 
     private String baseUrl = domainUrl + apiVersion;
 
@@ -29,17 +26,17 @@ public class StaffMicroServiceConnector extends RestTemplate {
         this.restTemplate = restTemplate;
     }*/
 
-    public List<Object> getAllEmployees() {
+    public List<Object> getAll(String subDomain) {
         StringBuffer urlBuilder = new StringBuffer(baseUrl)
-                .append(subDomainEmployee);
+                .append(subDomain);
         ResponseEntity <List<Object>> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Object>>(){});
         List<Object> allEmployees = response.getBody();
         return allEmployees;
     }
 
-    public Object getEmployee(Long id) {
+    public Object getOne(String subDomain, Long id) {
         StringBuffer urlBuilder = new StringBuffer(baseUrl)
-                .append(subDomainEmployee)
+                .append(subDomain)
                 .append(id);
         ResponseEntity<Object> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, Object.class);
         return response.getBody();
