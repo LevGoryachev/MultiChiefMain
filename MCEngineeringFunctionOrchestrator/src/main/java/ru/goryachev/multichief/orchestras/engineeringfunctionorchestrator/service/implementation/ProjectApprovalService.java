@@ -3,6 +3,8 @@ package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.servi
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.model.bundle.ProjectApproval;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.repository.ProjectApprovalRepository;
@@ -14,14 +16,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-//@PropertySource("classpath:microservices.properties")
+@PropertySource("classpath:application.yml")
 public class ProjectApprovalService implements BundleService {
 
-    //@Value("${urlscheme.multichief.construction.subdomain.bim}")
-    private String subDomainBim = "bims/"; //yml
-     //@Value("${urlscheme.multichief.staff.subdomain.employee}")
-    private String subDomainEmployee = "employees/"; //yml
-
+    @Value("${urlscheme.multichief.construction.subdomain.bim}")
+    private String subDomainBim;
+    @Value("${urlscheme.multichief.staff.subdomain.employee}")
+    private String subDomainEmployee;
 
     private ProjectApprovalRepository projectApprovalRepository;
     private ConstructionMicroServiceConnector constructionConnector;
@@ -37,7 +38,6 @@ public class ProjectApprovalService implements BundleService {
     public Iterable<ProjectApproval> getAllProjects (){
         return projectApprovalRepository.findAll();
     }
-
 
     //getBundle()
     public Map<String, Object> getProject (Long bimId) {
@@ -76,5 +76,4 @@ public class ProjectApprovalService implements BundleService {
     public void deleteProject (){
 
     }
-
 }

@@ -6,3 +6,16 @@ spring:
     driverClassName: org.postgresql.Driver
   jpa:
     database: POSTGRESQL
+
+urlscheme:
+  multichief:
+    construction:
+      domain: http://localhost:8080/Gradle___ru_goryachev___MultiChiefConstruction_war/
+      apiversion: api/v1/
+      subdomain:
+        bim: bims/
+    staff:
+      domain: http://localhost:8080/Gradle___ru_goryachev___MultiChiefStaff_war/
+      apiversion: api/v1/
+      subdomain:
+        employee: employees/

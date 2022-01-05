@@ -1,45 +1,25 @@
 package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.webclient;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+/**
+ * Custom Connector class for MultiChiefConstruction microservice (the domain Construction).
+ * Local variable (urlBuilder) is for building the url of target entity/subdomain CRUD.
+ * The Fields (domainUrl, apiVersion) are for main segments of url - from properties (application.yml).
+ * CRUD methods require parameters for additional segments of url to build the target url.
+ * @author Lev Goryachev
+ * @version 1-0
+ */
 
 @Component
-//@PropertySource("classpath:microservices.properties")
-public class StaffMicroServiceConnector extends RestTemplate {
+@PropertySource("classpath:application.yml")
+public class StaffMicroServiceConnector extends AbstractConnector {
 
-    //@Value("${urlscheme.multichief.construction}")
-    private String domainUrl = "http://localhost:8080/Gradle___ru_goryachev___MultiChiefStaff_war/"; // microserviceUrl from yml
-    //@Value("${urlscheme.multichief.construction.apiversion}")
-    private String apiVersion = "api/v1/";//yml
-
-    private String baseUrl = domainUrl + apiVersion;
-
-    //private RestTemplate restTemplate;
-   /* @Autowired
-    public StaffMicroServiceConnector(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }*/
-
-    public List<Object> getAll(String subDomain) {
-        StringBuffer urlBuilder = new StringBuffer(baseUrl)
-                .append(subDomain);
-        ResponseEntity <List<Object>> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Object>>(){});
-        List<Object> allEmployees = response.getBody();
-        return allEmployees;
+    private StaffMicroServiceConnector (@Value("${urlscheme.multichief.staff.domain}") String domainUrl,
+                                        @Value("${urlscheme.multichief.staff.apiversion}") String apiVersion) {
+        this.domainUrl = domainUrl;
+        this.apiVersion = apiVersion;
     }
-
-    public Object getOne(String subDomain, Long id) {
-        StringBuffer urlBuilder = new StringBuffer(baseUrl)
-                .append(subDomain)
-                .append(id);
-        ResponseEntity<Object> response = this.exchange(urlBuilder.toString(), HttpMethod.GET, null, Object.class);
-        return response.getBody();
-    }
-    //Read methods only
 }

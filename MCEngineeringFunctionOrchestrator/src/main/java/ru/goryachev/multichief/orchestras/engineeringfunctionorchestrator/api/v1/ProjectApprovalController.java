@@ -58,12 +58,12 @@ public class ProjectApprovalController {
 
         Map<String, Object> newBim = new LinkedHashMap<>();
         newBim.put("id","");
-        newBim.put("projectCodeNumber","SE-3");
-        newBim.put("projectName","Exp 3 from Proxy Orchestrator");
+        newBim.put("projectCodeNumber","SE-8");
+        newBim.put("projectName","Exp 8 from Proxy Orchestrator");
         newBim.put("lod","500");
         newBim.put("projectTypeId","");
         newBim.put("eirId","");
-        newBim.put("link","/httl/ddd/bterterthnhjuy");
+        newBim.put("link","/httl/ddd/r8d8f8u8q8");
         proxyBimService.save(newBim);
     }
 
