@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @PropertySource("classpath:application.yml")
-public class ProjectApprovalService implements BundleService {
+public class BundleProjectApprovalService implements BundleService {
 
     @Value("${urlscheme.multichief.construction.subdomain.bim}")
     private String subDomainBim;
@@ -29,7 +29,7 @@ public class ProjectApprovalService implements BundleService {
     private StaffMicroServiceConnector staffConnector;
 
     @Autowired
-    public ProjectApprovalService(ProjectApprovalRepository projectApprovalRepository, ConstructionMicroServiceConnector constructionConnector, StaffMicroServiceConnector staffConnector) {
+    public BundleProjectApprovalService(ProjectApprovalRepository projectApprovalRepository, ConstructionMicroServiceConnector constructionConnector, StaffMicroServiceConnector staffConnector) {
         this.projectApprovalRepository = projectApprovalRepository;
         this.constructionConnector = constructionConnector;
         this.staffConnector = staffConnector;

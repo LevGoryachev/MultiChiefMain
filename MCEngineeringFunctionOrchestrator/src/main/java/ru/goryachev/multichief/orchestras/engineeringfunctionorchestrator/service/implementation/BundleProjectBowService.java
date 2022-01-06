@@ -7,12 +7,12 @@ import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.reposi
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.BundleService;
 
 @Service
-public class ProjectBowService implements BundleService {
+public class BundleProjectBowService implements BundleService {
 
     private ProjectBowRepository projectBowRepository;
 
     @Autowired
-    public ProjectBowService(ProjectBowRepository projectBowRepository) {
+    public BundleProjectBowService(ProjectBowRepository projectBowRepository) {
         this.projectBowRepository = projectBowRepository;
     }
 }

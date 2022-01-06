@@ -2,6 +2,8 @@ package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.servi
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.ProxyService;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.webclient.ConstructionMicroServiceConnector;
@@ -10,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-//@PropertySource("classpath:microservices.properties")
+@PropertySource("classpath:application.yml")
 public class ProxyBimService implements ProxyService {
 
-    //@Value("${urlscheme.multichief.construction.subdomain.bim}")
-    private String subDomain = "bims/"; //yml
+    @Value("${urlscheme.multichief.construction.subdomain.bim}")
+    private String subDomain;
 
     private ConstructionMicroServiceConnector constructionConnector;
 
