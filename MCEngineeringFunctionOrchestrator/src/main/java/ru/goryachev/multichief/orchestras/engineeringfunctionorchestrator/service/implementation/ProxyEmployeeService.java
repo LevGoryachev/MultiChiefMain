@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.AbstractProxyService;
-import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.webclient.ConstructionMicroServiceConnector;
+import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.webclient.StaffMicroServiceConnector;
+
+import java.util.Map;
 
 /**
  * The connector provides connection with appropriate microservice (domain).
@@ -18,11 +20,23 @@ import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.webcli
 
 @Service
 @PropertySource("classpath:application.yml")
-public class ProxyEstimateService extends AbstractProxyService {
+public class ProxyEmployeeService extends AbstractProxyService {
 
     @Autowired
-    private ProxyEstimateService (@Value("${urlscheme.multichief.construction.subdomain.estimate}") String subDomain, ConstructionMicroServiceConnector constructionConnector) {
+    private ProxyEmployeeService(@Value("${urlscheme.multichief.staff.subdomain.employee}") String subDomain, StaffMicroServiceConnector staffMicroServiceConnector) {
         this.subDomain = subDomain;
-        this.connector = constructionConnector;
+        this.connector = staffMicroServiceConnector;
+    }
+
+    @Override
+    public Object save(Map<String, Object> requestDto) {
+        //not allowed to use method in MCEngineeringOrchestrator
+        return null;
+    }
+
+    @Override
+    public Object delete(Long bimId) {
+        //not allowed to use method in MCEngineeringOrchestrator
+        return null;
     }
 }
