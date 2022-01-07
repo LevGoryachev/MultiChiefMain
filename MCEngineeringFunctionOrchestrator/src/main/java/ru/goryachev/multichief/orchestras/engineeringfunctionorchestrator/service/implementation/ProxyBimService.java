@@ -1,6 +1,8 @@
 package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.implementation;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -14,6 +16,8 @@ import java.util.Map;
 @Service
 @PropertySource("classpath:application.yml")
 public class ProxyBimService implements ProxyService {
+
+    private final Logger log = LoggerFactory.getLogger(ProxyBimService.class);
 
     @Value("${urlscheme.multichief.construction.subdomain.bim}")
     private String subDomain;
@@ -30,6 +34,7 @@ public class ProxyBimService implements ProxyService {
     }
 
     public Object getOne (Long bimId) {
+        log.info("ProxyBimService" + ", " + "getOne(" + bimId + ")");
         return constructionConnector.getOne(subDomain, bimId);
     }
 
