@@ -14,6 +14,10 @@ urlscheme:
       apiversion: api/v1/
       subdomain:
         bim: bims/
+        eir: eirs/
+        estimate: estimates/
+        type: types/
+
     staff:
       domain: http://localhost:8080/Gradle___ru_goryachev___MultiChiefStaff_war/
       apiversion: api/v1/

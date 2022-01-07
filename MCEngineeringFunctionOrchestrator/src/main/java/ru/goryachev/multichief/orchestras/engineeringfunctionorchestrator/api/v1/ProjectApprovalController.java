@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.model.bundle.ProjectApproval;
-import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.implementation.ProjectApprovalService;
+import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.implementation.BundleProjectApprovalService;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.implementation.ProxyBimService;
 
 import java.util.LinkedHashMap;
@@ -22,25 +22,25 @@ import java.util.Map;
 @RequestMapping("/api/v1-0/projects")
 public class ProjectApprovalController {
 
-    private ProjectApprovalService projectApprovalService;
+    private BundleProjectApprovalService bundleProjectApprovalService;
 
     //todo delete this after
     @Autowired
     private ProxyBimService proxyBimService;
 
     @Autowired
-    public ProjectApprovalController(ProjectApprovalService projectApprovalService) {
-        this.projectApprovalService = projectApprovalService;
+    public ProjectApprovalController(BundleProjectApprovalService bundleProjectApprovalService) {
+        this.bundleProjectApprovalService = bundleProjectApprovalService;
     }
 
     @GetMapping
     public ResponseEntity<Iterable<ProjectApproval>> getAllProjects (){
-        return new ResponseEntity<>(projectApprovalService.getAllProjects(), HttpStatus.OK);
+        return new ResponseEntity<>(bundleProjectApprovalService.getAllProjects(), HttpStatus.OK);
     }
 
     @GetMapping("{projectId}")
     public ResponseEntity<Object> getProject (@PathVariable Long projectId){
-        return new ResponseEntity<>(projectApprovalService.getProject(projectId), HttpStatus.OK);
+        return new ResponseEntity<>(bundleProjectApprovalService.getProject(projectId), HttpStatus.OK);
     }
 
     @PostMapping("{projectId}")
