@@ -5,43 +5,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
-import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.ProxyService;
+import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.AbstractProxyService;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.webclient.ConstructionMicroServiceConnector;
 
-import java.util.List;
-import java.util.Map;
+/**
+ * The connector provides connection with appropriate microservice (domain).
+ * The parameter subDomain defines a segment of url of sub-domain entity.
+ * CRUD methods of AbstractProxyService use these parameters
+ * @author Lev Goryachev
+ * @version 1-0
+ */
 
 @Service
 @PropertySource("classpath:application.yml")
-public class ProxyProjectTypeService implements ProxyService {
-
-    @Value("${urlscheme.multichief.construction.subdomain.type}")
-    private String subDomain;
-
-    private ConstructionMicroServiceConnector constructionConnector;
+public class ProxyProjectTypeService extends AbstractProxyService {
 
     @Autowired
-    public ProxyProjectTypeService(ConstructionMicroServiceConnector constructionConnector) {
-        this.constructionConnector = constructionConnector;
-    }
-
-    @Override
-    public List<Object> getAll (){
-        return constructionConnector.getAll(subDomain);
-    }
-
-    @Override
-    public Object getOne (Long projectTypeId) {
-        return constructionConnector.getOne(subDomain, projectTypeId);
-    }
-
-    @Override
-    public Object save (Map<String, Object> requestDto){
-        return constructionConnector.save(subDomain, requestDto);
-    }
-
-    @Override
-    public Object delete (Long projectTypeId){
-        return constructionConnector.delete(subDomain, projectTypeId);
+    private ProxyProjectTypeService (@Value("${urlscheme.multichief.construction.subdomain.type}") String subDomain, ConstructionMicroServiceConnector constructionConnector) {
+        this.subDomain = subDomain;
+        this.connector = constructionConnector;
     }
 }

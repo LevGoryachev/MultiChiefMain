@@ -1,8 +1,8 @@
 package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.implementation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.*;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Integration testing with real DB.
@@ -30,33 +30,30 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(classes = WebAppInit.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ProxyBimServiceIntegrationTest {
+public class ProxyEirServiceIntegrationTest {
 
     private Long testId;
 
-    private final Logger log = LoggerFactory.getLogger(ProxyBimServiceIntegrationTest.class);
+    private final Logger log = LoggerFactory.getLogger(ProxyEirServiceIntegrationTest.class);
 
     @Autowired
-    private ProxyBimService proxyBimService;
+    private ProxyEirService proxyEirService;
 
     @Test
     @Order(1)
     @Rollback(value = false)
-    public void saveBimTest(){
-        Map<String, Object> newBim = new LinkedHashMap<>();
-        newBim.put("projectCodeNumber","TestValueAbc");
-        newBim.put("projectName","Test Value DEF");
-        newBim.put("lod","500");
-        newBim.put("projectTypeId","");
-        newBim.put("eirId","");
-        newBim.put("link","TestValueXyz");
-        Object microserviceResponse = proxyBimService.save(newBim);
+    public void saveEirTest(){
+        Map<String, Object> newEir = new LinkedHashMap<>();
+        newEir.put("eirCodeNumber","TestValueAbc");
+        newEir.put("eirDescription","Test Value DEF");
+        newEir.put("link","TestValueXyz");
+        Object microserviceResponse = proxyEirService.save(newEir);
         ObjectMapper objectMapper = new ObjectMapper();
         Map<Object, Object> responseMap = objectMapper.convertValue(microserviceResponse, Map.class);
         this.testId = Long.parseLong(responseMap.get("id").toString());
 
         if (log.isDebugEnabled()) {
-            log.debug("ProxyBimService" + ", " + "save():" + " " + responseMap.toString());
+            log.debug("ProxyEirService" + ", " + "save():" + " " + responseMap.toString());
         }
 
         Assertions.assertThat(this.testId).isGreaterThan(0);
@@ -64,8 +61,8 @@ public class ProxyBimServiceIntegrationTest {
 
     @Test
     @Order(2)
-    public void getBimByIdTest(){
-        Object microserviceResponse = proxyBimService.getOne(testId);
+    public void getEirByIdTest(){
+        Object microserviceResponse = proxyEirService.getOne(testId);
         ObjectMapper objectMapper = new ObjectMapper();
         Map<Object, Object> dtoMap = objectMapper.convertValue(microserviceResponse, Map.class);
 
@@ -74,8 +71,8 @@ public class ProxyBimServiceIntegrationTest {
 
     @Test
     @Order(3)
-    public void getAllBimsTest(){
-        List<Object> microserviceResponse = proxyBimService.getAll();
+    public void getAllEirsTest(){
+        List<Object> microserviceResponse = proxyEirService.getAll();
         ObjectMapper objectMapper = new ObjectMapper();
         List<Map<Object, Object>> dtoMaps = microserviceResponse.stream().map(n ->(Map<Object, Object>) objectMapper.convertValue(n, Map.class)).collect(Collectors.toList());
 
@@ -85,33 +82,33 @@ public class ProxyBimServiceIntegrationTest {
     @Test
     @Order(4)
     @Rollback(value = false)
-    public void updateBimTest(){
+    public void updateEirTest(){
         ObjectMapper objectMapper = new ObjectMapper();
 
-        Object oldDto = proxyBimService.getOne(testId);
+        Object oldDto = proxyEirService.getOne(testId);
         Map<String, Object> oldDtoMap = objectMapper.convertValue(oldDto, Map.class);
-        oldDtoMap.put("projectName","Updated test Value");
+        oldDtoMap.put("eirDescription","Updated test Value");
 
-        Object dtoUpdated = proxyBimService.save(oldDtoMap);
+        Object dtoUpdated = proxyEirService.save(oldDtoMap);
 
         if (log.isDebugEnabled()) {
-            log.debug("ProxyBimService" + ", " + "update():" + " " + dtoUpdated.toString());
+            log.debug("ProxyEirService" + ", " + "update():" + " " + dtoUpdated.toString());
         }
 
-        Object microserviceResponse = proxyBimService.getOne(testId);
+        Object microserviceResponse = proxyEirService.getOne(testId);
         Map<Object, Object> dtoUpdatedReaponse = objectMapper.convertValue(microserviceResponse, Map.class);
 
-        Assertions.assertThat(dtoUpdatedReaponse.get("projectName")).isEqualTo("Updated test Value");
+        Assertions.assertThat(dtoUpdatedReaponse.get("eirDescription")).isEqualTo("Updated test Value");
     }
     @Test
     @Order(5)
     @Rollback(value = false)
-    public void deleteBimTest(){
+    public void deleteEirTest(){
 
-        Object microserviceResponse = proxyBimService.delete(testId);
+        Object microserviceResponse = proxyEirService.delete(testId);
         if (log.isDebugEnabled()) {
-            log.debug("ProxyBimService" + ", " + "delete():" + " " + microserviceResponse);
+            log.debug("ProxyEirService" + ", " + "delete():" + " " + microserviceResponse);
         }
-        assertThrows(Exception.class, ()->{proxyBimService.getOne(testId);} );
+        assertThrows(Exception.class, ()->{proxyEirService.getOne(testId);} );
     }
 }
