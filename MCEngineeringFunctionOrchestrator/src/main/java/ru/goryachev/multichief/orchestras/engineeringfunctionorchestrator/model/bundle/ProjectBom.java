@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "project_bom")
+@Table(name = "PROJECT_BOM")
 @IdClass(ProjectBomCompositeKey.class)
 public class ProjectBom {
 

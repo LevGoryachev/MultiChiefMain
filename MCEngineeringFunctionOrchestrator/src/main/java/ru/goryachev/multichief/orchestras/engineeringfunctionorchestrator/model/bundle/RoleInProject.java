@@ -12,11 +12,11 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "role_in_project")
+@Table(name = "ROLE_IN_PROJECT")
 public class RoleInProject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)// for Oracle
     @Column(name = "role_in_project_id")
     private Long id;
 

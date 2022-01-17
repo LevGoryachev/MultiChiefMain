@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  */
 
 @Entity
-@Table(name = "project_approval")
+@Table(name = "PROJECT_APPROVAL")
 @IdClass(ProjectApprovalCompositeKey.class)
 public class ProjectApproval {
 
