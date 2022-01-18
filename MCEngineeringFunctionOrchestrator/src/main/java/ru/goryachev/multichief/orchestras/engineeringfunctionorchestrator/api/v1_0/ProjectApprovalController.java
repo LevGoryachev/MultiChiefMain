@@ -1,4 +1,4 @@
-package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.api.v1;
+package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.api.v1_0;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.model.bundle.ProjectApproval;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.implementation.BundleProjectApprovalService;
 import ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.service.implementation.ProxyBimService;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * MCEngineeringFunctionOrchestrator API: see app/swagger-ui/

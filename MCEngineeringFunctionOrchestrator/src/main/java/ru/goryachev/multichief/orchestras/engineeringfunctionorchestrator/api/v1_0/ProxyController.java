@@ -1,4 +1,4 @@
-package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.api.v1;
+package ru.goryachev.multichief.orchestras.engineeringfunctionorchestrator.api.v1_0;
 
 /**
  * ProxyController provides API for CRUD operations of third-party services (other microservices API)
